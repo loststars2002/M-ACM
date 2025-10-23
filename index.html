@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Towards Fine-Grained Human Motion Video Captioning - A novel approach for generating accurate descriptions of human actions in videos.">
+  <meta name="keywords" content="Video Captioning, Human Motion, Video Dataset">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Towards Fine-Grained Human Motion Video Captioning</title>
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Towards Fine-Grained Human Motion Video Captioning - A novel approach for generating accurate descriptions of human actions in videos.">
+  <meta name="keywords" content="Video Captioning, Human Motion, Video Dataset">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MeshCoder: LLM-Powered Structured Mesh Code Generation from Point Clouds</title> -->
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57Z7D08ZVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57Z7D08ZVQ');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/code.css">
+  <link rel="stylesheet" href="static/css/editing.css">
+  <link rel="stylesheet" href="static/css/understanding.css">
+  <link rel="icon" href="assets/imgs/pjlab.jpg">
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <!-- Three.js will be imported as ES modules in the JS files -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/languages/latex.min.js"></script>
+  <script>
+    hljs.registerLanguage('bibtex', hljs.getLanguage('latex'));
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+  <!-- Import map for bare module specifiers -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.158.0/build/three.module.js"
+      }
+    }
+  </script>
+
+</head>
+<body>
+
+<!-- Fullscreen Modal -->
+<div class="fullscreen-modal" id="fullscreenModal">
+  <div class="fullscreen-modal-content">
+    <button class="close-modal-btn" id="closeModalBtn" title="Close fullscreen">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="fullscreen-code-display" id="fullscreenCodeDisplay">
+      <!-- Complete code will be rendered here -->
+    </div>
+  </div>
+</div>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand navbar-brand-centered">
+    <a class="navbar-item" href="https://www.tsinghua.edu.cn/" target="_blank">
+      <img src="assets/imgs/pjlab.jpg" alt="Tsinghua University" style="height: 40px;">
+    </a>
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title-name"><img src="assets/imgs/thu-fig-logo.jpg" alt="Tsinghua Logo" style="height: 1em; vertical-align: middle; margin-right: 0.5em;" /><span class="grad2">M-ACM</span></h1>
+          <h1 class="title is-1 publication-title">Towards Fine-Grained Human Motion<br>Video Captioning</h1>
+          <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 1rem;">🎉 Accepted at ACM MM 2025</p>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Guorui Song,</span>
+            <span class="author-block">Guocun Wang,</span>
+            <span class="author-block">Zhe Huang,</span>
+            <span class="author-block">Jing Lin,</span>
+            <span class="author-block">Xuefei Zhe,</span>
+            <span class="author-block">Jian Li,</span>
+            <span class="author-block">Haoqian Wang</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2508.14879"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/WUtEcywwUPks"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/loststars2002/M-ACM"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/papers/2508.14879"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <img src="assets/imgs/hf-logo.svg">
+                  </span>
+                  <span>Huggingface</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+
+    
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="assets/imgs/ridar.png" alt="Ridar Image" style="width:100%; max-width:1200px; height:auto; margin-bottom:2rem;" />
+        <p style="text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Performance comparison of M-ACM against other models</p>
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified" style="background:#f5f5f5; padding:20px; border-radius:8px;">
+          <p>
+            Generating accurate descriptions of human actions in videos remains a challenging task for video captioning models. Existing approaches often struggle to capture fine-grained motion details, resulting in vague or semantically inconsistent captions.
+          </p>
+          <p>
+            In this work, we introduce the Motion-Augmented Caption Model (M-ACM), a novel generative framework that enhances caption quality by incorporating motion-aware decoding. At its core, M-ACM leverages motion representations derived from human mesh recovery to explicitly highlight human body dynamics, thereby reducing hallucinations and improving both semantic fidelity and spatial alignment in the generated captions.
+          </p>
+          <p>
+            To support research in this area, we present the Human Motion Insight (HMI) Dataset, comprising 115K video-description pairs focused on human movement, along with HMI-Bench, a dedicated benchmark for evaluating motion-focused video captioning. Experimental results demonstrate that M-ACM significantly outperforms previous methods in accurately describing complex human motions and subtle temporal variations, setting a new standard for motion-centric video captioning.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe 
+            src="https://www.youtube.com/embed/Xjm48CSxl00"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>  
+
+  </div>
+</section>
+
+
+<!-- Project Overview Image Section -->
+<section class="section" style="background: #f8f9fa; padding: 2rem 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Pipeline</h2>
+        <img src="assets/imgs/mcd.png" alt="M-ACM Project Overview" style="width:100%; max-width:1000px; height:auto;" />
+        <p style="margin: 0; font-size: 0.9rem; color: #666; line-height: 1.2; text-align: left;"><strong>Overview of our proposed M-ACM (Motion-Augmented Caption Model) framework.</strong> The system processes input videos through dual pathways: a standard visual pathway (top) and a motion-specialized pathway (bottom). The visual pathway extracts general visual features via a frozen vision encoder, while the motion pathway uses ViTPose-based frame sampling and human mesh recovery to generate precise motion representations. Both representations are projected into a common embedding space through trainable projection alignment modules. Our key innovation, Motion Synergetic Decoding (MSD), addresses hallucination issues by comparing logit distributions from both pathways. As shown in the example, without MSD the model incorrectly identifies the basketball being handled with the "foot" (hallucination), whereas with MSD the model correctly identifies the "hand" as the body part manipulating the ball.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Data Annotation Pipeline Section -->
+<section class="section" style="background: #ffffff; padding: 2rem 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Data Annotation</h2>
+        <img src="assets/imgs/data.png" alt="Data Annotation Pipeline" style="width:100%; max-width:1000px; height:auto;" />
+        <p style="margin: 0; font-size: 0.9rem; color: #666; line-height: 1.2; text-align: left;"><strong>The process of building the HMI dataset.</strong> Initially, the public video datasets are collected for scene segmentation and cleaning. Then, DWPose and movement criteria are used for filtering to obtain high-quality videos. Video keyframes sampled by ViTPose and the original captions are utilized for video-text collaborative annotation with GPT-4o mini. Additionally, DeepSeek-R1-Distill-Qwen-7B generates question-answer pairs based on the annotated video captions.</p>
+        <img src="assets/imgs/QA_anno.png" alt="QA Annotation Process" style="width:100%; max-width:1000px; height:auto; margin-top: 2rem;" />
+        <p style="margin: 0; font-size: 0.9rem; color: #666; line-height: 1.2; text-align: left;">The QA annotation process generates question-answer pairs from video captions using DeepSeek-R1-Distill-Qwen-7B to facilitate detailed evaluation and understanding of motion-related content in the HMI dataset.</p>
+        <div class="columns is-centered" style="margin-top: 2rem;">
+          <div class="column is-half">
+            <img src="assets/imgs/Distribution.png" alt="Data Distribution" style="width: 100%; height: 300px; object-fit: contain;" />
+            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Data distribution in the HMI dataset.</p>
+          </div>
+          <div class="column is-half">
+            <img src="assets/imgs/QA.png" alt="Data QA Types" style="width: 100%; height: 300px; object-fit: contain;" />
+            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 0.5rem;">The composition of QA pairs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Performance Section -->
+<section class="section" style="background: #f8f9fa; padding: 2rem 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Performance</h2>
+        <img src="assets/imgs/tab1.png" alt="Performance comparison on standard caption metrics" style="width:100%; max-width:1000px; height:auto;" />
+        <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Performance comparison on standard caption metrics in HMI-Bench.</p>
+        <img src="assets/imgs/tab2.png" alt="Performance comparison on video captioning dimensions" style="width:100%; max-width:1000px; height:auto; margin-top: 2rem;" />
+        <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Performance comparison on video captioning in HMI-Bench across five dimensions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section" id="BibTeX">
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code class="language-bibtex">@misc{song2025macm,
+  title={Towards Fine-Grained Human Motion Video Captioning}, 
+  author={Guorui Song and Guocun Wang and Zhe Huang and Jing Lin and Xuefei Zhe and Jian Li and Haoqian Wang},
+  year={2025},
+  eprint={2508.14879},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2508.14879}, 
+}
+</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website uses the <a href="https://nerfies.github.io/">Nerfies</a> and <a href="https://daibingquan.github.io/MeshCoder/#">MeshCoder</a> template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="static/js/code.js"></script>
+<script type="module" src="static/js/editing.js"></script>
+<script type="module" src="static/js/understanding.js"></script>
+
+</body>
+</html>
